@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.github.gradusnikov.eclipse.assistai.model.ChatMessage;
 import com.github.gradusnikov.eclipse.assistai.model.Conversation;
 import com.github.gradusnikov.eclipse.assistai.services.OpenAIStreamJavaHttpClient;
+import com.github.gradusnikov.eclipse.assistai.model.Incoming;
 
 class OpenAIStreamJavaHttpClientTest
 {
@@ -26,9 +27,9 @@ class OpenAIStreamJavaHttpClientTest
         client.run( conversation );
     }
 
-    public Flow.Subscriber<String> createSubscriber()
+    public Flow.Subscriber<Incoming> createSubscriber()
     {
-        return new Flow.Subscriber<String>()
+        return new Flow.Subscriber<Incoming>()
         {
             private Flow.Subscription subscription;
 
@@ -40,7 +41,7 @@ class OpenAIStreamJavaHttpClientTest
             }
 
             @Override
-            public void onNext(String item)
+            public void onNext(Incoming item)
             {
                 System.out.print(item);
                 subscription.request(1);
