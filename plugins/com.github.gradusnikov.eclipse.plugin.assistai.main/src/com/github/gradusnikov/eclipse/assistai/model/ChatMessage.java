@@ -81,7 +81,7 @@ public class ChatMessage {
         return name;
     }
 	public void setMessage(String string) {
-		content.append(string);
+		content.append(string);//again
 		
 	}
 	
